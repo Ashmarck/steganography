@@ -1,18 +1,27 @@
 import cv2 as cv
+import numpy as np
+import streamlit as st
 
 def encode(img, msg):
+
     a = [ord(i) for i in msg]
     for i in range(len(img[0])):
         img[0][i][2] = 178
         
     if len(msg) > 300:
-        print("Should not exceed 300 characters!")
+        print()
     else:
             
         for i in range(len(a)):
             img[0][i][2] = a[i]
         
-        return img
+    success, encoded_image_buffer = cv.imencode(".png", img)
+
+    if not success:
+        st.error("Failed to encode image to PNG format.")
+        return None
+    
+    return encoded_image_buffer.tobytes()
 
 def decode(img):
     asciis = []
@@ -26,7 +35,7 @@ def decode(img):
 
     return final_text
      
-# img = cv.imread("projects/steganography/eagle.png")
+# img = cv.imread("steganography/eagle.png")
 # t = input("Enter your message: ")
 
 # print(encode(img, t))
