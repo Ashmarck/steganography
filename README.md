@@ -2,7 +2,7 @@
 
 A simple web application built with Streamlit to hide secret text messages within images. This project demonstrates basic steganography techniques in a user-friendly interface.
 
-## ✨ Features
+## Features
 
 - **Encode**: Hide a secret text message inside a cover image (`.png`, `.jpg`).
 - **Decode**: Extract a hidden message from an encoded image.
@@ -10,12 +10,12 @@ A simple web application built with Streamlit to hide secret text messages withi
 - **Downloadable Output**: Easily download the newly encoded image.
 
 ### Planned Features
-- **🔊 Audio Steganography**: Hiding data within `.wav` files.
-- **🎦 Video Steganography**: Hiding data within video files.
+- ** Audio Steganography**: Hiding data within `.wav` files.
+- ** Video Steganography**: Hiding data within video files.
 
 
 
-## 🚀 Setup and Installation
+##  Setup and Installation
 
 To run this project locally, follow these steps:
 
@@ -42,7 +42,7 @@ To run this project locally, follow these steps:
     pip install -r requirements.txt
     ```
 
-## 🏃‍♀️ How to Run
+## How to Run
 
 Once the setup is complete, run the Streamlit application with the following command:
 
