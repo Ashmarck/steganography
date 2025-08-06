@@ -59,7 +59,7 @@ if options == "Image":
     elif choose == "Decode":
         st.header("Decode a Message from an Image")
 
-        img_to_decode = st.file_uploader("Upload your encoded image:", type=["png"])
+        img_to_decode = st.file_uploader("Upload your encoded image:", type=["jpg", "jpeg", "png"])
 
         if img_to_decode is not None:
             st.image(img_to_decode, caption="Encoded Image", use_container_width=True)
