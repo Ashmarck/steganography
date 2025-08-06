@@ -2,8 +2,9 @@
 
 A simple web application built with Streamlit to hide secret text messages within images. This project demonstrates basic steganography techniques in a user-friendly interface.
 
-- **Live Demo**
-https://ashstegano.streamlit.app
+## Live Demo
+You can access the live, deployed version of the app here:
+**[https://ashstegano.streamlit.app/](https://ashstegano.streamlit.app/)**
 
 ## Features
 
