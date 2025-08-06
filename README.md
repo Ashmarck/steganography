@@ -4,7 +4,7 @@ A simple web application built with Streamlit to hide secret text messages withi
 
 ## Live Demo
 You can access the live, deployed version of the app here:
-**[https://ashstegano.streamlit.app/](https://ashstegano.streamlit.app/**
+**[https://ashstegano.streamlit.app/](https://ashstegano.streamlit.app/)**
 
 ## Features
 
