@@ -14,8 +14,8 @@ You can access the live, deployed version of the app here:
 - **Downloadable Output**: Easily download the newly encoded image.
 
 ### Planned Features
-- ** Audio Steganography**: Hiding data within `.wav` files.
-- ** Video Steganography**: Hiding data within video files.
+- **Audio Steganography**: Hiding data within `.wav` files.
+- **Video Steganography**: Hiding data within video files.
 
 
 
