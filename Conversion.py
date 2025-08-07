@@ -15,13 +15,14 @@ async def encode_translate(msg):
 
     return lang_ind, english_text
 
-async def decode_translate(msg, lang_ind):
+async def decode_translate(msg, lang):
     trans = Translator()
     
-    lang_list = list(Languages.LANGUAGES.keys())
-    lang_code = lang_list[lang_ind]
+    lang_list = list(Languages.LANGUAGES.items())
+    # lang_code = lang_list[lang_ind]
     
-    translated_obj = await trans.translate(msg, dest=lang_code)
-    final_text = translated_obj.text
-
-    return final_text
+    for key, val in lang_list:
+        if val == lang:
+            translated_obj = await trans.translate(msg, dest=key)
+            final_text = translated_obj.text
+            return final_text

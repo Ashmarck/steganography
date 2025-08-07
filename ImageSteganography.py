@@ -32,10 +32,10 @@ def encode(img, msg):
     
     return encoded_image_buffer.tobytes()
 
-def decode(img):
+def decode(img, lang):
     
     asciis = []
-    lang_ind = img[0][0][2]
+    # lang_ind = img[0][0][2]
     l = img[0][1][2]
     
     for i in range(2,l+2):
@@ -46,7 +46,7 @@ def decode(img):
     chars = [chr(i) for i in asciis]
     text = ''.join(chars)
     
-    data = asyncio.run(Conversion.decode_translate(text, lang_ind))
+    data = asyncio.run(Conversion.decode_translate(text, lang))
     
     return data
      
