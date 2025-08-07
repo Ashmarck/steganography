@@ -1,8 +1,8 @@
 import cv2 as cv
 import numpy as np
 import streamlit as st
-from streamlit_option_menu import option_menu
 import ImageSteganography
+from streamlit_option_menu import option_menu
 
 st.set_page_config(page_title="Steganography App", layout="wide")
 
