@@ -2,51 +2,53 @@ import asyncio
 import cv2 as cv
 import Conversion
 import numpy as np
+import EncDec as ed
 import streamlit as st
 
-def encode(img, msg):
-    
-    # lang_ind, data = asyncio.run(Conversion.encode_translate(msg))
-    
-    a = [ord(i) for i in msg]
+def encode(img, msg, code=0):
+   
     l = len(msg)
-    
-    for i in range(len(img[0])):
-        img[0][i][2] = 178
-        
-    # img[0][0][2] = 0
-    # img[0][1][2] = l
-    
     if l > 250:
-        print()
-    else:
-            
-        for i in range(l):
-            img[0][i][2] = a[i]
+        raise ValueError("Message too long. Maximum 250 characters.")
+
+    img[0][0][2] = l
+
+    if code == 1: 
+        a = [ord(i) for i in msg]
+        key, enc_data, img_with_key = ed.encrypt(a, img.copy()) 
         
-    success, encoded_image_buffer = cv.imencode(".png", img)
+        for i in range(1, l + 1):
+            img_with_key[0][i][2] = enc_data[i-1]
+        
+        image_to_save = img_with_key
 
+    else:
+        key = None 
+        a = [ord(i) for i in msg]
+        img_plaintext = img.copy()
+        for i in range(1, l + 1):
+            img_plaintext[0][i][2] = a[i-1]
+        image_to_save = img_plaintext
+
+    success, encoded_image_buffer = cv.imencode(".png", image_to_save)
     if not success:
-        st.error("Failed to encode image to PNG format.")
-        return None
+        raise ConnectionError("Failed to encode image to PNG format.")
     
-    return encoded_image_buffer.tobytes()
+    return key, encoded_image_buffer.tobytes()
 
-def decode(img):
-    
-    asciis = []
-    # lang_ind = img[0][0][2]
-    # l = img[0][1][2]
-    
-    for i in range(len(img[0])):
-
-        if img[0][i][2] in range(31,127):
+def decode(img, key=None, code=0):
+   
+    if code == 1: 
+        if key is None or key == "":
+            return "Error: A key is required for decryption."
+        return ed.decrypt(img, key)
+        
+    else: 
+        l = img[0][0][2]
+        asciis = []
+        for i in range(1,l+1):
             asciis.append(img[0][i][2])
         
-    chars = [chr(i) for i in asciis]
-    text = ''.join(chars)
-    
-    # data = asyncio.run(Conversion.decode_translate(text, lang))
-    
-    return text
-     
+        chars = [chr(i) for i in asciis]
+        text = ''.join(chars)
+        return text
